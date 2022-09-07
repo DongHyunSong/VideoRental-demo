@@ -57,33 +57,8 @@ public class Customer {
 	}
 
 	public String getReport() {
-		String result = "Customer Report for " + getName() + "\n";
-
-		List<Rental> rentals = getRentals();
-		double totalCharge = 0;
-		int totalPoint = 0;
-
-		for (Rental each : rentals) {
-			int daysRented = each.getDaysRented();
-			int eachPoint = each.getEachPoint();
-			double eachCharge = each.getEachCharge();
-
-			totalCharge += eachCharge;
-			totalPoint += eachPoint;
-
-			result += "\tTitle: " + each.getVideo().getTitle() + "\tDays rented: " + daysRented + "\tCharge: " + eachCharge
-					+ "\tPoint: " + eachPoint + "\n";
-		}
-
-		result += "Total charge: " + totalCharge + "\tTotal Point: " + totalPoint + "\n";
-
-		if (totalPoint >= 10) {
-			System.out.println("Congratulations! You earned two free coupons");
-		} else if (totalPoint >= 5) {
-			System.out.println("Congratulations! You earned one free coupon");
-		}
-
-		return result;
+		Report report = new Report(this);
+		return report.makeReport();
 	}
 
 
