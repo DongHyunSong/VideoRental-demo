@@ -35,18 +35,17 @@ public class Report {
     private void retrieveRentals() {
         List<Rental> rentals = customer.getRentals();
         for (Rental each : rentals) {
-            int daysRented = each.getDaysRented();
-            int eachPoint = each.getEachPoint();
-            double eachCharge = each.getEachCharge();
-
-            totalCharge += eachCharge;
-            totalPoint += eachPoint;
-
-            appendRentalResult(each, daysRented, eachPoint, eachCharge);
+            appendRentalResult(each);
         }
     }
 
-    private void appendRentalResult(Rental each, int daysRented, int eachPoint, double eachCharge) {
+    private void appendRentalResult(Rental each) {
+        int daysRented = each.getDaysRented();
+        int eachPoint = each.getEachPoint();
+        double eachCharge = each.getEachCharge();
+
+        totalCharge += eachCharge;
+        totalPoint += eachPoint;
         result += "\tTitle: " + each.getVideo().getTitle() + "\tDays rented: " + daysRented + "\tCharge: " + eachCharge
                 + "\tPoint: " + eachPoint + "\n";
     }
